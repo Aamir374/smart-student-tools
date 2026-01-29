@@ -1,8 +1,11 @@
 :root {
-    --primary-color: #00A8E8; /* Light Blue */
-    --secondary-color: #007EA7; /* Darker Blue for hover */
+    --primary-color: #00A8E8;
+    /* Light Blue */
+    --secondary-color: #007EA7;
+    /* Darker Blue for hover */
     --background-color: #FFFFFF;
-    --surface-color: #F8F9FA; /* Light Grey for cards */
+    --surface-color: #F8F9FA;
+    /* Light Grey for cards */
     --text-color: #333333;
     --text-light: #666666;
     --border-radius: 8px;
@@ -62,7 +65,7 @@ a {
 /* Header */
 header {
     background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     height: var(--header-height);
     position: sticky;
     top: 0;
@@ -164,7 +167,7 @@ header {
 
 .tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     border-color: var(--primary-color);
 }
 
@@ -189,7 +192,7 @@ header {
     background: white;
     padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     text-align: center;
     transition: all 0.2s;
 }
@@ -252,7 +255,8 @@ footer {
     font-weight: 500;
 }
 
-.form-group input, .form-group select {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
@@ -265,7 +269,8 @@ footer {
     padding: 20px;
     background-color: #E0F7FA;
     border-radius: var(--border-radius);
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 .result-box.active {
@@ -281,11 +286,12 @@ footer {
     .hero h1 {
         font-size: 2rem;
     }
-    
+
     .nav-menu {
-        display: none; /* Simple mobile hide for now, needs hamburger for full implementation */
+        display: none;
+        /* Simple mobile hide for now, needs hamburger for full implementation */
     }
-    
+
     .tool-card {
         padding: 20px;
     }
@@ -315,13 +321,14 @@ footer {
 
 .search-box input {
     width: 100%;
-    padding: 18px 20px 18px 55px; /* Left padding for icon */
+    padding: 18px 20px 18px 55px;
+    /* Left padding for icon */
     border: 2px solid #E1E1E1;
     border-radius: 50px;
     font-size: 1.1rem;
     outline: none;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
 .search-box input:focus {
@@ -329,7 +336,7 @@ footer {
     box-shadow: 0 10px 20px rgba(0, 168, 232, 0.15);
 }
 
-.search-box input:focus + .search-icon,
+.search-box input:focus+.search-icon,
 .search-wrapper:focus-within .search-icon {
     color: var(--primary-color);
 }
@@ -343,11 +350,12 @@ footer {
     background: white;
     border-radius: 12px;
     margin-top: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid #eee;
     max-height: 400px;
     overflow-y: auto;
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     text-align: left;
     opacity: 0;
     transform: translateY(-10px);
@@ -374,7 +382,8 @@ footer {
     border-bottom: none;
 }
 
-.search-result-item:hover, .search-result-item.selected {
+.search-result-item:hover,
+.search-result-item.selected {
     background-color: #f8f9fa;
 }
 
@@ -445,19 +454,23 @@ footer {
 
 .search-box input {
     width: 100%;
-    padding: 20px 24px 20px 60px; /* Better padding */
+    padding: 20px 24px 20px 60px;
+    /* Better padding */
     border: 2px solid transparent;
     background-color: white;
-    border-radius: 9999px; /* Pill shape */
+    border-radius: 9999px;
+    /* Pill shape */
     font-size: 1.1rem;
     outline: none;
     transition: var(--transition);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Deep float shadow */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    /* Deep float shadow */
 }
 
 .search-box input:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 4px rgba(79, 70, 229, 0.2); /* Ring effect */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 4px rgba(79, 70, 229, 0.2);
+    /* Ring effect */
 }
 
 .search-wrapper .search-icon {
@@ -534,6 +547,76 @@ footer {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px; /* Approximate height for content */
+    max-height: 1000px;
+    /* Safe height for wrapped text on mobile */
 }
 
+
+/* MOBILE MENU STYLES */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* Hidden by default */
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
+        transition: 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        z-index: 1000;
+        display: flex;
+        /* Override previous display:none */
+    }
+
+    .nav-menu.show {
+        right: 0;
+    }
+
+    .nav-menu a {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    /* Animate Hamburger to X */
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}

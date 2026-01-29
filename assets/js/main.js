@@ -112,3 +112,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+    // Mobile Menu Toggle Functionality
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    const navMenu = document.getElementById("navMenu");
+    
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener("click", () => {
+            mobileMenuToggle.classList.toggle("active");
+            navMenu.classList.toggle("show");
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenuToggle.classList.remove("active");
+                navMenu.classList.remove("show");
+            });
+        });
+    }
+
