@@ -3,7 +3,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // Search Functionality
-    // Search Functionality
     const searchInput = document.getElementById('toolSearch');
     const searchResults = document.getElementById('searchResults');
 
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: 'QR Code Generator', url: 'image-tools/qr-generator.html', category: 'Image' }
     ];
 
-    if (searchInput) {
+    if (searchInput && searchResults) {
         searchInput.addEventListener('input', function (e) {
             const term = e.target.value.toLowerCase().trim();
 
@@ -65,11 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (results.length === 0) {
             searchResults.innerHTML = '<div class="no-results">No tools found matching your search.</div>';
         } else {
-            results.forEach((tool, index) => {
+            results.forEach((tool) => {
                 const div = document.createElement('div');
                 div.className = 'search-result-item';
                 div.innerHTML = `
-                    <a href="${tool.url}" style="display: flex; align-items: center; gap: 15px;">
+                    <a href="${tool.url}" style="display: flex; align-items: center; gap: 15px; width: 100%;">
                         <div class="search-result-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="8"></circle>
@@ -77,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             </svg>
                         </div>
                         <div class="search-result-info">
-                            <h4>${tool.name}</h4>
-                            <p>${tool.category} Tool</p>
+                            <h4 style="margin:0;font-size:1rem;">${tool.name}</h4>
+                            <p style="margin:0;font-size:0.8rem;color:#666;">${tool.category} Tool</p>
                         </div>
                     </a>
                 `;
@@ -89,31 +88,27 @@ document.addEventListener('DOMContentLoaded', function () {
         searchResults.classList.add('show');
     }
 
-    // Toggle Mobile Menu (Placeholder for future implementation if needed)
-    // currently relying on simple CSS hiding or layout changes
-});
-
     // FAQ Accordion Functionality
     const faqQuestions = document.querySelectorAll(".faq-question");
-    
+
     faqQuestions.forEach(question => {
         question.addEventListener("click", () => {
             const item = question.parentElement;
             const isActive = item.classList.contains("active");
-            
+
             // Close all other items
             document.querySelectorAll(".faq-item").forEach(otherItem => {
                 otherItem.classList.remove("active");
                 const otherAnswer = otherItem.querySelector(".faq-answer");
-                otherAnswer.style.maxHeight = null;
+                if (otherAnswer) otherAnswer.style.maxHeight = null;
             });
-            
+
             // Toggle current item
             if (!isActive) {
                 item.classList.add("active");
                 const answer = item.querySelector(".faq-answer");
-                answer.style.maxHeight = answer.scrollHeight + "px";
+                if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
             }
         });
     });
-
+});
