@@ -92,3 +92,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Toggle Mobile Menu (Placeholder for future implementation if needed)
     // currently relying on simple CSS hiding or layout changes
 });
+
+    // FAQ Accordion Functionality
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener("click", () => {
+            const item = question.parentElement;
+            const isActive = item.classList.contains("active");
+            
+            // Close all other items
+            document.querySelectorAll(".faq-item").forEach(otherItem => {
+                otherItem.classList.remove("active");
+                const otherAnswer = otherItem.querySelector(".faq-answer");
+                otherAnswer.style.maxHeight = null;
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add("active");
+                const answer = item.querySelector(".faq-answer");
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+
