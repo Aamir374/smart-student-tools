@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPG to PNG Converter - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online JPG to PNG Converter. Convert your images to transparent format easily.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">JPG to PNG Converter</h1>
+
+        <div class="calculator-wrapper">
+            <div class="drop-zone"
+                style="border: 2px dashed #00A8E8; padding: 40px; text-align: center; cursor: pointer;"
+                onclick="document.getElementById('fileInput').click()">
+                <p>Click to Upload JPG/JPEG Image</p>
+                <input type="file" id="fileInput" accept="image/jpeg" style="display: none;"
+                    onchange="convertImage(event)">
+            </div>
+
+            <div id="result-area" style="display: none; text-align: center; margin-top: 20px;">
+                <h3>Conversion Successful!</h3>
+                <img id="preview" style="max-width: 100%; border-radius: 4px; margin: 15px 0;">
+                <br>
+                <button id="downloadBtn" class="btn">Download PNG</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        function convertImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+
+                    const pngData = canvas.toDataURL('image/png');
+
+                    const preview = document.getElementById('preview');
+                    preview.src = pngData;
+
+                    const btn = document.getElementById('downloadBtn');
+                    btn.onclick = function () {
+                        const link = document.createElement('a');
+                        link.download = file.name.replace(/\.(jpg|jpeg)$/i, '') + '.png';
+                        link.href = pngData;
+                        link.click();
+                    };
+
+                    document.getElementById('result-area').style.display = 'block';
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+
+</html>

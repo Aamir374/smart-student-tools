@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online Grade Calculator. Calculate your weighted grade or simple average easily.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .grade-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .grade-row input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#student-tools">Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Grade Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <h3>Weighted Grade Calculator</h3>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Enter your assessment grades and their
+                weight (%)</p>
+
+            <div id="grade-rows">
+                <div class="grade-row">
+                    <input type="text" placeholder="Assignment Name (Optional)" style="flex: 2;">
+                    <input type="number" placeholder="Grade (%)" class="grade-input" style="flex: 1;">
+                    <input type="number" placeholder="Weight (%)" class="weight-input" style="flex: 1;">
+                </div>
+                <div class="grade-row">
+                    <input type="text" placeholder="Assignment Name (Optional)" style="flex: 2;">
+                    <input type="number" placeholder="Grade (%)" class="grade-input" style="flex: 1;">
+                    <input type="number" placeholder="Weight (%)" class="weight-input" style="flex: 1;">
+                </div>
+            </div>
+
+            <button class="add-btn" onclick="addGradeRow()">+ Add Row</button>
+            <br>
+            <button class="btn" onclick="calculateGrade()">Calculate Grade</button>
+
+            <div class="result-box" id="result-box">
+                <p id="grade-result" style="font-size: 1.2rem; font-weight: bold;"></p>
+                <p id="letter-result" style="color: #007EA7;"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        function addGradeRow() {
+            const container = document.getElementById('grade-rows');
+            const newRow = document.createElement('div');
+            newRow.className = 'grade-row';
+            newRow.innerHTML = `
+                <input type="text" placeholder="Assignment Name (Optional)" style="flex: 2;">
+                <input type="number" placeholder="Grade (%)" class="grade-input" style="flex: 1;">
+                <input type="number" placeholder="Weight (%)" class="weight-input" style="flex: 1;">
+            `;
+            container.appendChild(newRow);
+        }
+
+        function calculateGrade() {
+            const grades = document.querySelectorAll('.grade-input');
+            const weights = document.querySelectorAll('.weight-input');
+            let totalWeightedGrade = 0;
+            let totalWeight = 0;
+
+            for (let i = 0; i < grades.length; i++) {
+                const g = parseFloat(grades[i].value);
+                const w = parseFloat(weights[i].value);
+
+                if (!isNaN(g) && !isNaN(w)) {
+                    totalWeightedGrade += g * (w / 100);
+                    totalWeight += w;
+                }
+            }
+
+            const resultBox = document.getElementById('result-box');
+            const gradeResult = document.getElementById('grade-result');
+
+            if (totalWeight === 0) {
+                // assume equal weight or simple average if weights missing? 
+                // For now, strict weighted requirement logic, or alert.
+                // Let's do simple average if weights are all empty
+                let sum = 0;
+                let count = 0;
+                for (let i = 0; i < grades.length; i++) {
+                    const g = parseFloat(grades[i].value);
+                    if (!isNaN(g)) { sum += g; count++; }
+                }
+                if (count > 0) {
+                    const avg = sum / count;
+                    gradeResult.textContent = `Average Grade: ${avg.toFixed(2)}%`;
+                    resultBox.classList.add('active');
+                    return;
+                }
+
+                alert('Please enter grades.');
+                return;
+            }
+
+            // Normal weighted calc
+            // If total weight is not 100, we re-normalize? Usually yes, or show current accumulated.
+            // Let's show current accumulated grade relative to the weight entered.
+            // Actually usually users want to know their grade out of 100 for the course so far.
+            // So: (Total Weighted Points / Total Weight) * 100 ? No, standard formula: Sum(Grade*Weight) if weights sum to 1.
+            // If weights are percents, Sum(Grade * (Weight/100)).
+            // If weights don't sum to 100, we show what they have SO FAR (e.g. 45% out of 50% coursework).
+
+            // Re-normalize to 100 scale for "Class Grade"
+            const finalGrade = (totalWeightedGrade * 100) / totalWeight;
+
+            gradeResult.textContent = `Weighted Grade: ${finalGrade.toFixed(2)}%`;
+            resultBox.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

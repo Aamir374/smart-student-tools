@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator - Smart Student Tools</title>
+    <meta name="description"
+        content="Free online Percentage Calculator. Calculate percentages, find the percentage of a number, and percentage changes easily.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header (Duplicated for simple static site structure) -->
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#student-tools">Student Tools</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Percentage Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <!-- Type 1: What is X% of Y? -->
+            <div class="calc-section" style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                <h3>Calculate Percentage</h3>
+                <div class="form-group">
+                    <label>What is</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="number" id="whatPercent" placeholder="%" style="width: 100px;">
+                        <span>% of</span>
+                        <input type="number" id="ofNumber" placeholder="Total Value">
+                    </div>
+                </div>
+                <button class="btn" onclick="calculatePercentOf()">Calculate</button>
+                <div class="result-box" id="result1">
+                    <p id="resText1" style="font-size: 1.2rem; font-weight: bold;"></p>
+                </div>
+            </div>
+
+            <!-- Type 2: X is what % of Y? -->
+            <div class="calc-section">
+                <h3>Find Percentage</h3>
+                <div class="form-group">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="number" id="isNumber" placeholder="Part Value">
+                        <span>is what % of</span>
+                        <input type="number" id="totalNumber" placeholder="Total Value">
+                    </div>
+                </div>
+                <button class="btn" onclick="calculateWhatPercent()">Calculate</button>
+                <div class="result-box" id="result2">
+                    <p id="resText2" style="font-size: 1.2rem; font-weight: bold;"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="seo-content">
+            <h2>How to use this Percentage Calculator</h2>
+            <p>Our free percentage calculator tools allow you to solve common math problems quickly. Whether you need to
+                find a discount, tax, or just a simple percentage of a grade, this tool is perfect for students and
+                daily use.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                &copy; 2026 Smart Student Tools. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function calculatePercentOf() {
+            const percent = parseFloat(document.getElementById('whatPercent').value);
+            const total = parseFloat(document.getElementById('ofNumber').value);
+            const resultBox = document.getElementById('result1');
+            const resultText = document.getElementById('resText1');
+
+            if (isNaN(percent) || isNaN(total)) {
+                alert('Please enter valid numbers');
+                return;
+            }
+
+            const res = (percent / 100) * total;
+            resultText.textContent = `${percent}% of ${total} is ${res}`;
+            resultBox.classList.add('active');
+        }
+
+        function calculateWhatPercent() {
+            const part = parseFloat(document.getElementById('isNumber').value);
+            const total = parseFloat(document.getElementById('totalNumber').value);
+            const resultBox = document.getElementById('result2');
+            const resultText = document.getElementById('resText2');
+
+            if (isNaN(part) || isNaN(total) || total === 0) {
+                alert('Please enter valid numbers (Total cannot be 0)');
+                return;
+            }
+
+            const res = (part / total) * 100;
+            resultText.textContent = `${part} is ${res.toFixed(2)}% of ${total}`;
+            resultBox.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Calculator - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Profit Margin Calculator. Calculate your profit or loss amount and percentage.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Profit Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <div class="form-group">
+                <label>Cost Price (CP):</label>
+                <input type="number" id="cp" placeholder="e.g. 50">
+            </div>
+            <div class="form-group">
+                <label>Selling Price (SP):</label>
+                <input type="number" id="sp" placeholder="e.g. 75">
+            </div>
+
+            <button class="btn" onclick="calculateProfit()">Calculate</button>
+
+            <div class="result-box" id="result-box">
+                <h3 id="result-text" style="margin-bottom: 10px;"></h3>
+                <p id="amount-text" style="font-size: 1.5rem; font-weight: bold;"></p>
+                <p id="percent-text" style="font-size: 1.2rem; margin-top: 5px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateProfit() {
+            const cp = parseFloat(document.getElementById('cp').value);
+            const sp = parseFloat(document.getElementById('sp').value);
+
+            if (isNaN(cp) || isNaN(sp)) { alert('Please enter valid numbers'); return; }
+
+            const diff = sp - cp;
+            const percent = (diff / cp) * 100;
+
+            const resultBox = document.getElementById('result-box');
+            const resultText = document.getElementById('result-text');
+            const amountText = document.getElementById('amount-text');
+            const percentText = document.getElementById('percent-text');
+
+            if (diff > 0) {
+                resultText.textContent = "PROFIT";
+                resultText.style.color = "#28a745";
+                amountText.style.color = "#28a745";
+            } else if (diff < 0) {
+                resultText.textContent = "LOSS";
+                resultText.style.color = "#dc3545";
+                amountText.style.color = "#dc3545";
+            } else {
+                resultText.textContent = "NO PROFIT, NO LOSS";
+                resultText.style.color = "#666";
+                amountText.style.color = "#666";
+            }
+
+            amountText.textContent = Math.abs(diff).toFixed(2);
+            percentText.textContent = `${Math.abs(percent).toFixed(2)}%`;
+
+            resultBox.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

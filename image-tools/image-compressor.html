@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - Smart Student Tools</title>
+    <meta name="description" content="Free Online Image Compressor. Compress JPG and PNG images to reduce file size.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .drop-zone {
+            border: 2px dashed #00A8E8;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .preview-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .img-box {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .img-box img {
+            max-width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Image Compressor</h1>
+
+        <div class="calculator-wrapper">
+            <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
+                <p>Click or Drag & Drop Image Here (JPG/PNG)</p>
+                <input type="file" id="fileInput" accept="image/jpeg, image/png" style="display: none;"
+                    onchange="loadImage(event)">
+            </div>
+
+            <div id="controls" style="display: none;">
+                <div class="form-group">
+                    <label>Compression Quality: <span id="qualityVal">0.8</span></label>
+                    <input type="range" id="quality" min="0.1" max="1.0" step="0.1" value="0.8" style="width: 100%;"
+                        oninput="updateQualityDisplay()">
+                </div>
+                <button class="btn" onclick="compressImage()">Compress & Download</button>
+
+                <div class="preview-container">
+                    <div class="img-box">
+                        <h4>Original</h4>
+                        <p id="origSize"></p>
+                        <img id="origImg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        let originalFile = null;
+        let originalImage = null;
+
+        function updateQualityDisplay() {
+            document.getElementById('qualityVal').textContent = document.getElementById('quality').value;
+        }
+
+        function loadImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            originalFile = file;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    originalImage = img;
+                    document.getElementById('origImg').src = e.target.result;
+                    document.getElementById('origSize').textContent = (file.size / 1024).toFixed(2) + ' KB';
+                    document.getElementById('controls').style.display = 'block';
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function compressImage() {
+            if (!originalImage) return;
+
+            const quality = parseFloat(document.getElementById('quality').value);
+            const canvas = document.createElement('canvas');
+            canvas.width = originalImage.width;
+            canvas.height = originalImage.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(originalImage, 0, 0);
+
+            // Compress to JPEG for visible compression (PNG is lossless usually, though some APIs allow quality)
+            // We'll default to jpeg for compression tools as it's most common for size reduction.
+            const dataUrl = canvas.toDataURL('image/jpeg', quality);
+
+            const link = document.createElement('a');
+            link.download = `compressed-${originalFile.name.split('.')[0]}.jpg`;
+            link.href = dataUrl;
+            link.click();
+        }
+    </script>
+</body>
+
+</html>

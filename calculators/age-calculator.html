@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online Age Calculator. Calculate your exact age in years, months and days from your date of birth.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Age Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+
+            <div class="form-group">
+                <label>Age at Date (optional, defaults to today)</label>
+                <input type="date" id="targetDate">
+            </div>
+
+            <button class="btn" onclick="calculateAge()">Calculate Age</button>
+
+            <div class="result-box" id="result-box">
+                <h3 id="age-result" style="color: #00A8E8; font-size: 1.5rem; margin-bottom: 10px;"></h3>
+                <p id="details-result" style="font-size: 1rem; color: #666;"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        // Set default target date to today
+        document.getElementById('targetDate').valueAsDate = new Date();
+
+        function calculateAge() {
+            const dobInput = document.getElementById('dob').value;
+            const targetInput = document.getElementById('targetDate').value;
+
+            if (!dobInput) {
+                alert('Please select your Date of Birth');
+                return;
+            }
+
+            const dob = new Date(dobInput);
+            const target = targetInput ? new Date(targetInput) : new Date();
+
+            let years = target.getFullYear() - dob.getFullYear();
+            let months = target.getMonth() - dob.getMonth();
+            let days = target.getDate() - dob.getDate();
+
+            if (days < 0) {
+                months--;
+                // Get days in previous month
+                const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            const resultBox = document.getElementById('result-box');
+            const ageResult = document.getElementById('age-result');
+            const detailsResult = document.getElementById('details-result');
+
+            if (years < 0) {
+                ageResult.textContent = "Not born yet!";
+                detailsResult.textContent = "The date provided is in the future.";
+            } else {
+                ageResult.textContent = `${years} Years, ${months} Months, ${days} Days`;
+
+                // Extra details
+                const diffTime = Math.abs(target - dob);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                detailsResult.textContent = `or ${diffDays.toLocaleString()} total days`;
+            }
+
+            resultBox.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

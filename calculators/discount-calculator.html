@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator - Smart Student Tools</title>
+    <meta name="description" content="Free Discount Calculator. Calculate the final price and savings after discount.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Discount Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <div class="form-group">
+                <label>Original Price:</label>
+                <input type="number" id="price" placeholder="e.g. 100">
+            </div>
+            <div class="form-group">
+                <label>Discount (% off):</label>
+                <input type="number" id="discount" placeholder="e.g. 20">
+            </div>
+
+            <button class="btn" onclick="calculateDiscount()">Calculate Savings</button>
+
+            <div class="result-box" id="result-box">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="font-size: 0.9rem; color: #666;">Final Price</p>
+                        <h3 id="final-price" style="font-size: 2rem; color: #28a745; margin-bottom: 5px;"></h3>
+                    </div>
+                    <div style="text-align: right;">
+                        <p style="font-size: 0.9rem; color: #666;">You Save</p>
+                        <h3 id="saved-amount" style="font-size: 2rem; color: #00A8E8; margin-bottom: 5px;"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateDiscount() {
+            const price = parseFloat(document.getElementById('price').value);
+            const discount = parseFloat(document.getElementById('discount').value);
+
+            if (isNaN(price) || isNaN(discount)) {
+                alert('Please enter valid numbers');
+                return;
+            }
+
+            const saved = (price * discount) / 100;
+            const final = price - saved;
+
+            document.getElementById('final-price').textContent = final.toFixed(2);
+            document.getElementById('saved-amount').textContent = saved.toFixed(2);
+            document.getElementById('result-box').classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

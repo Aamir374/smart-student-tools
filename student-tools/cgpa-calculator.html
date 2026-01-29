@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator - Smart Student Tools</title>
+    <meta name="description" content="Free CGPA Calculator. Calculate your Semester GPA and Cumulative GPA easily.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .gpa-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .gpa-row select,
+        .gpa-row input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#student-tools">Student Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">CGPA Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <h3>Calculate Your GPA</h3>
+
+            <div id="course-rows">
+                <div class="gpa-row">
+                    <input type="text" placeholder="Course Name" style="flex: 2;">
+                    <input type="number" placeholder="Credits" class="credit-input">
+                    <select class="grade-select">
+                        <option value="4.0">A</option>
+                        <option value="3.7">A-</option>
+                        <option value="3.3">B+</option>
+                        <option value="3.0">B</option>
+                        <option value="2.7">B-</option>
+                        <option value="2.3">C+</option>
+                        <option value="2.0">C</option>
+                        <option value="1.7">C-</option>
+                        <option value="1.0">D</option>
+                        <option value="0.0">F</option>
+                    </select>
+                </div>
+                <div class="gpa-row">
+                    <input type="text" placeholder="Course Name" style="flex: 2;">
+                    <input type="number" placeholder="Credits" class="credit-input">
+                    <select class="grade-select">
+                        <option value="4.0">A</option>
+                        <option value="3.7">A-</option>
+                        <option value="3.3">B+</option>
+                        <option value="3.0">B</option>
+                        <option value="2.7">B-</option>
+                        <option value="2.3">C+</option>
+                        <option value="2.0">C</option>
+                        <option value="1.7">C-</option>
+                        <option value="1.0">D</option>
+                        <option value="0.0">F</option>
+                    </select>
+                </div>
+                <div class="gpa-row">
+                    <input type="text" placeholder="Course Name" style="flex: 2;">
+                    <input type="number" placeholder="Credits" class="credit-input">
+                    <select class="grade-select">
+                        <option value="4.0">A</option>
+                        <option value="3.7">A-</option>
+                        <option value="3.3">B+</option>
+                        <option value="3.0">B</option>
+                        <option value="2.7">B-</option>
+                        <option value="2.3">C+</option>
+                        <option value="2.0">C</option>
+                        <option value="1.7">C-</option>
+                        <option value="1.0">D</option>
+                        <option value="0.0">F</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" style="background-color: #28a745; margin-bottom: 20px;" onclick="addCourseRow()">+ Add
+                Course</button>
+            <br>
+            <button class="btn" onclick="calculateCGPA()">Calculate CGPA</button>
+
+            <div class="result-box" id="result-box">
+                <p id="cgpa-result" style="font-size: 1.2rem; font-weight: bold;"></p>
+                <p id="total-credits"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        function addCourseRow() {
+            const container = document.getElementById('course-rows');
+            const row = container.children[0].cloneNode(true);
+            // Clear inputs
+            row.querySelectorAll('input').forEach(i => i.value = '');
+            row.querySelector('select').selectedIndex = 0;
+            container.appendChild(row);
+        }
+
+        function calculateCGPA() {
+            const credits = document.querySelectorAll('.credit-input');
+            const grades = document.querySelectorAll('.grade-select');
+
+            let totalPoints = 0;
+            let totalCredits = 0;
+
+            for (let i = 0; i < credits.length; i++) {
+                const cred = parseFloat(credits[i].value);
+                const gradePt = parseFloat(grades[i].value);
+
+                if (!isNaN(cred)) {
+                    totalPoints += cred * gradePt;
+                    totalCredits += cred;
+                }
+            }
+
+            const resultBox = document.getElementById('result-box');
+
+            if (totalCredits === 0) {
+                alert('Please enter at least one course credit.');
+                return;
+            }
+
+            const gpa = totalPoints / totalCredits;
+
+            document.getElementById('cgpa-result').textContent = `Your GPA: ${gpa.toFixed(2)}`;
+            document.getElementById('total-credits').textContent = `Total Credits: ${totalCredits}`;
+            resultBox.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

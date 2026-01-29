@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - Smart Student Tools</title>
+    <meta name="description" content="Free BMI Calculator. Check your Body Mass Index and health category.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">BMI Calculator</h1>
+
+        <div class="calculator-wrapper">
+            <div style="margin-bottom: 20px;">
+                <label>Unit System:</label>
+                <select id="unitSystem" onchange="toggleUnits()" style="padding: 5px; margin-left: 10px;">
+                    <option value="metric">Metric (kg, cm)</option>
+                    <option value="imperial">Imperial (lbs, ft/in)</option>
+                </select>
+            </div>
+
+            <!-- Metric Inputs -->
+            <div id="metricInput">
+                <div class="form-group">
+                    <label>Height (cm):</label>
+                    <input type="number" id="heightCm" placeholder="e.g. 175">
+                </div>
+                <div class="form-group">
+                    <label>Weight (kg):</label>
+                    <input type="number" id="weightKg" placeholder="e.g. 70">
+                </div>
+            </div>
+
+            <!-- Imperial Inputs -->
+            <div id="imperialInput" style="display: none;">
+                <div class="form-group">
+                    <label>Height:</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="heightFt" placeholder="Feet">
+                        <input type="number" id="heightIn" placeholder="Inches">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Weight (lbs):</label>
+                    <input type="number" id="weightLbs" placeholder="e.g. 150">
+                </div>
+            </div>
+
+            <button class="btn" onclick="calculateBMI()">Calculate BMI</button>
+
+            <div class="result-box" id="result-box">
+                <h3 id="bmi-value" style="font-size: 2rem; color: #00A8E8; margin-bottom: 5px;"></h3>
+                <p id="bmi-category" style="font-weight: bold;"></p>
+                <p style="font-size: 0.9rem; margin-top: 10px; color: #666;">Normal range: 18.5 - 24.9</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleUnits() {
+            const system = document.getElementById('unitSystem').value;
+            if (system === 'metric') {
+                document.getElementById('metricInput').style.display = 'block';
+                document.getElementById('imperialInput').style.display = 'none';
+            } else {
+                document.getElementById('metricInput').style.display = 'none';
+                document.getElementById('imperialInput').style.display = 'block';
+            }
+        }
+
+        function calculateBMI() {
+            const system = document.getElementById('unitSystem').value;
+            let height = 0; // in meters
+            let weight = 0; // in kg
+
+            if (system === 'metric') {
+                const cm = parseFloat(document.getElementById('heightCm').value);
+                const kg = parseFloat(document.getElementById('weightKg').value);
+                if (isNaN(cm) || isNaN(kg)) { alert('Please enter valid numbers'); return; }
+                height = cm / 100;
+                weight = kg;
+            } else {
+                const ft = parseFloat(document.getElementById('heightFt').value);
+                const inch = parseFloat(document.getElementById('heightIn').value);
+                const lbs = parseFloat(document.getElementById('weightLbs').value);
+                if (isNaN(ft) || isNaN(inch) || isNaN(lbs)) { alert('Please enter valid numbers'); return; }
+
+                // Convert to metric
+                height = ((ft * 12) + inch) * 0.0254;
+                weight = lbs * 0.453592;
+            }
+
+            if (height <= 0 || weight <= 0) {
+                alert('Values must be greater than zero');
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            const resultBox = document.getElementById('result-box');
+            const valueText = document.getElementById('bmi-value');
+            const catText = document.getElementById('bmi-category');
+
+            valueText.textContent = bmi.toFixed(1);
+
+            let category = '';
+            let color = '';
+            if (bmi < 18.5) { category = 'Underweight'; color = '#ffc107'; }
+            else if (bmi < 25) { category = 'Normal Weight'; color = '#28a745'; }
+            else if (bmi < 30) { category = 'Overweight'; color = '#fd7e14'; }
+            else { category = 'Obese'; color = '#dc3545'; }
+
+            catText.textContent = category;
+            catText.style.color = color;
+
+            resultBox.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

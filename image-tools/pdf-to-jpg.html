@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to JPG Converter - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online PDF to JPG Converter. Convert PDF pages to high-quality images instantly.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">PDF to JPG Converter</h1>
+
+        <div class="calculator-wrapper">
+            <div class="drop-zone"
+                style="border: 2px dashed #00A8E8; padding: 40px; text-align: center; cursor: pointer;"
+                onclick="document.getElementById('fileInput').click()">
+                <p>Click to Upload PDF File</p>
+                <input type="file" id="fileInput" accept="application/pdf" style="display: none;"
+                    onchange="loadPDF(event)">
+            </div>
+
+            <div id="pages-container" style="margin-top: 30px; display: grid; gap: 20px; justify-content: center;">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        async function loadPDF(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const container = document.getElementById('pages-container');
+            container.innerHTML = '<p>Processing...</p>';
+
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+
+            container.innerHTML = ''; // Clear loading text
+
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const viewport = page.getViewport({ scale: 1.5 }); // Good quality
+
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+                const wrapper = document.createElement('div');
+                wrapper.style.textAlign = 'center';
+
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL('image/jpeg');
+                img.style.maxWidth = '100%';
+                img.style.border = '1px solid #ddd';
+
+                const btn = document.createElement('button');
+                btn.className = 'btn';
+                btn.style.marginTop = '10px';
+                btn.textContent = `Download Page ${i}`;
+                btn.onclick = () => {
+                    const link = document.createElement('a');
+                    link.download = `${file.name}-page-${i}.jpg`;
+                    link.href = img.src;
+                    link.click();
+                };
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(br());
+                wrapper.appendChild(btn);
+                container.appendChild(wrapper);
+            }
+        }
+
+        function br() { return document.createElement('br'); }
+    </script>
+</body>
+
+</html>

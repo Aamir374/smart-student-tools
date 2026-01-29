@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online QR Code Generator. Create QR codes for URLs, text, Wi-Fi and more instantly.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        #qrcode img {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">QR Code Generator</h1>
+
+        <div class="calculator-wrapper">
+            <div class="form-group">
+                <label>Enter URL or Text:</label>
+                <input type="text" id="qrText" placeholder="https://example.com" oninput="generateQR()">
+            </div>
+
+            <div id="qrcode"
+                style="margin-top: 30px; text-align: center; height: 260px; display: flex; align-items: center; justify-content: center;">
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="color: #666; font-size: 0.9rem;">Right click the image to save it.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        let qrcode = new QRCode(document.getElementById("qrcode"), {
+            width: 200,
+            height: 200
+        });
+
+        function generateQR() {
+            const text = document.getElementById("qrText").value;
+            if (!text) {
+                qrcode.clear();
+                return;
+            }
+            qrcode.makeCode(text);
+        }
+
+        // Initial example
+        qrcode.makeCode("https://smartstudenttools.com");
+    </script>
+</body>
+
+</html>
