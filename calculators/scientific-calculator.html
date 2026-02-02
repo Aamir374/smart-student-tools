@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online Scientific Calculator. Perform advanced mathematical calculations including trigonometry, logarithms, and powers.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .sci-calculator {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .sci-display {
+            width: 100%;
+            height: 60px;
+            background: #ecf0f1;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 1.5rem;
+            text-align: right;
+            font-family: 'Courier New', Courier, monospace;
+            outline: none;
+        }
+
+        .sci-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .sci-btn {
+            padding: 15px 5px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .btn-num {
+            background: #34495e;
+            color: white;
+        }
+
+        .btn-num:hover {
+            background: #4e6a85;
+        }
+
+        .btn-op {
+            background: #e67e22;
+            color: white;
+        }
+
+        .btn-op:hover {
+            background: #f39c12;
+        }
+
+        .btn-func {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-func:hover {
+            background: #bdc3c7;
+        }
+
+        .btn-eq {
+            background: #27ae60;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .btn-eq:hover {
+            background: #2ecc71;
+        }
+
+        .btn-clear {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-clear:hover {
+            background: #ff7675;
+        }
+
+        @media (max-width: 450px) {
+            .sci-buttons {
+                gap: 5px;
+            }
+
+            .sci-btn {
+                padding: 12px 2px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Scientific Calculator</h1>
+
+        <div class="sci-calculator">
+            <input type="text" class="sci-display" id="display" readonly value="0">
+            <div class="sci-buttons">
+                <!-- Functions -->
+                <button class="sci-btn btn-func" onclick="pushFunc('sin')">sin</button>
+                <button class="sci-btn btn-func" onclick="pushFunc('cos')">cos</button>
+                <button class="sci-btn btn-func" onclick="pushFunc('tan')">tan</button>
+                <button class="sci-btn btn-func" onclick="pushOp('**')">xʸ</button>
+                <button class="sci-btn btn-clear" onclick="clearDisplay()">AC</button>
+
+                <button class="sci-btn btn-func" onclick="pushFunc('log')">log</button>
+                <button class="sci-btn btn-func" onclick="pushFunc('ln')">ln</button>
+                <button class="sci-btn btn-func" onclick="pushFunc('sqrt')">√</button>
+                <button class="sci-btn btn-func" onclick="pushValue('3.14159')">π</button>
+                <button class="sci-btn btn-op" onclick="pushOp('/')">÷</button>
+
+                <!-- Numbers -->
+                <button class="sci-btn btn-num" onclick="pushValue('7')">7</button>
+                <button class="sci-btn btn-num" onclick="pushValue('8')">8</button>
+                <button class="sci-btn btn-num" onclick="pushValue('9')">9</button>
+                <button class="sci-btn btn-op" onclick="pushOp('*')">×</button>
+                <button class="sci-btn btn-func" onclick="backspace()">⌫</button>
+
+                <button class="sci-btn btn-num" onclick="pushValue('4')">4</button>
+                <button class="sci-btn btn-num" onclick="pushValue('5')">5</button>
+                <button class="sci-btn btn-num" onclick="pushValue('6')">6</button>
+                <button class="sci-btn btn-op" onclick="pushOp('-')">−</button>
+                <button class="sci-btn btn-func" onclick="pushValue('(')">(</button>
+
+                <button class="sci-btn btn-num" onclick="pushValue('1')">1</button>
+                <button class="sci-btn btn-num" onclick="pushValue('2')">2</button>
+                <button class="sci-btn btn-num" onclick="pushValue('3')">3</button>
+                <button class="sci-btn btn-op" onclick="pushOp('+')">+</button>
+                <button class="sci-btn btn-func" onclick="pushValue(')')">)</button>
+
+                <button class="sci-btn btn-num" onclick="pushValue('0')">0</button>
+                <button class="sci-btn btn-num" onclick="pushValue('.')">.</button>
+                <button class="sci-btn btn-num" onclick="pushValue('Math.E')">e</button>
+                <button class="sci-btn btn-eq" onclick="calculate()">=</button>
+            </div>
+        </div>
+
+        <!-- Related Tools Section -->
+        <div class="related-tools">
+            <h2>Related Student Tools</h2>
+            <div class="related-grid">
+                <a href="../student-tools/grade-calculator.html" class="related-card">
+                    <h3>Grade Calculator</h3>
+                    <p>Calculate your semester grades instantly.</p>
+                    <span class="related-card-link">Try Tool →</span>
+                </a>
+                <a href="../student-tools/cgpa-calculator.html" class="related-card">
+                    <h3>CGPA Calculator</h3>
+                    <p>Track your academic performance easily.</p>
+                    <span class="related-card-link">Try Tool →</span>
+                </a>
+                <a href="../calculators/age-calculator.html" class="related-card">
+                    <h3>Age Calculator</h3>
+                    <p>Find your exact age in years, months, days.</p>
+                    <span class="related-card-link">Try Tool →</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        let display = document.getElementById('display');
+        let expression = '';
+
+        function pushValue(v) {
+            if (expression === '0') expression = '';
+            expression += v;
+            updateDisplay();
+        }
+
+        function pushOp(op) {
+            expression += op;
+            updateDisplay();
+        }
+
+        function pushFunc(f) {
+            if (f === 'sin') expression += 'Math.sin(';
+            if (f === 'cos') expression += 'Math.cos(';
+            if (f === 'tan') expression += 'Math.tan(';
+            if (f === 'log') expression += 'Math.log10(';
+            if (f === 'ln') expression += 'Math.log(';
+            if (f === 'sqrt') expression += 'Math.sqrt(';
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            expression = '0';
+            updateDisplay();
+        }
+
+        function backspace() {
+            expression = expression.slice(0, -1);
+            if (expression === '') expression = '0';
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            display.value = expression.replace(/Math\./g, '').replace(/\*\*/g, '^');
+        }
+
+        function calculate() {
+            try {
+                // Handle trig (convert degrees to radians conceptually if needed, but default is rad)
+                let result = eval(expression);
+                expression = result.toString();
+                updateDisplay();
+            } catch (e) {
+                display.value = "Error";
+                expression = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

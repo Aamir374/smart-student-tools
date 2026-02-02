@@ -648,3 +648,12 @@ footer {
         transform: translateY(-9px) rotate(-45deg);
     }
 }
+/* Related Tools Section */
+.related-tools { margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee; }
+.related-tools h2 { font-size: 1.5rem; margin-bottom: 25px; color: var(--text-color); text-align: left; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.related-card { background: #f8fbff; padding: 20px; border-radius: var(--border-radius); border: 1px solid #e0e7ff; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 10px; }
+.related-card:hover { background: white; border-color: var(--primary-color); box-shadow: var(--shadow); transform: translateY(-3px); }
+.related-card h3 { font-size: 1.1rem; color: var(--text-color); margin: 0; }
+.related-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+.related-card-link { font-size: 0.9rem; color: var(--primary-color); font-weight: 600; margin-top: 5px; }

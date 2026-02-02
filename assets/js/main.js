@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: 'Case Converter', url: 'student-tools/case-converter.html', category: 'Student' },
 
         { name: 'Unit Converter', url: 'calculators/unit-converter.html', category: 'Calculator' },
+        { name: 'Scientific Calculator', url: 'calculators/scientific-calculator.html', category: 'Calculator' },
         { name: 'Age Calculator', url: 'calculators/age-calculator.html', category: 'Calculator' },
         { name: 'BMI Calculator', url: 'calculators/bmi-calculator.html', category: 'Calculator' },
         { name: 'Loan EMI Calculator', url: 'calculators/loan-calculator.html', category: 'Calculator' },
