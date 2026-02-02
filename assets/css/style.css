@@ -825,8 +825,46 @@ footer {
     font-size: 1.2rem;
 }
 
-.tool-instructions p {
-    font-size: 1.05rem;
-    color: #4a5568;
-    line-height: 1.8;
+
+/* AD PLACEMENT STYLES */
+.ad-slot {
+    background-color: #f8f9fa;
+    border: 1px dashed #dee2e6;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 20px;
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ad-slot::before {
+    content: "ADVERTISEMENT";
+    font-size: 0.7rem;
+    color: #adb5bd;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.ad-slot-top {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.ad-slot-bottom {
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .ad-slot {
+        min-height: 80px;
+        padding: 15px;
+        margin: 15px 0;
+    }
 }
