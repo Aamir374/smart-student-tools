@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: 'CGPA Calculator', url: 'student-tools/cgpa-calculator.html', category: 'Student' },
         { name: 'Word Counter', url: 'student-tools/word-counter.html', category: 'Student' },
         { name: 'Study Timer', url: 'student-tools/study-timer.html', category: 'Student' },
+        { name: 'Case Converter', url: 'student-tools/case-converter.html', category: 'Student' },
 
+        { name: 'Unit Converter', url: 'calculators/unit-converter.html', category: 'Calculator' },
         { name: 'Age Calculator', url: 'calculators/age-calculator.html', category: 'Calculator' },
         { name: 'BMI Calculator', url: 'calculators/bmi-calculator.html', category: 'Calculator' },
         { name: 'Loan EMI Calculator', url: 'calculators/loan-calculator.html', category: 'Calculator' },
@@ -113,22 +115,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-    // Mobile Menu Toggle Functionality
-    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-    const navMenu = document.getElementById("navMenu");
-    
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener("click", () => {
-            mobileMenuToggle.classList.toggle("active");
-            navMenu.classList.toggle("show");
-        });
-        
-        // Close menu when clicking a link
-        document.querySelectorAll(".nav-menu a").forEach(link => {
-            link.addEventListener("click", () => {
-                mobileMenuToggle.classList.remove("active");
-                navMenu.classList.remove("show");
-            });
-        });
-    }
+// Mobile Menu Toggle Functionality
+const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+const navMenu = document.getElementById("navMenu");
 
+if (mobileMenuToggle && navMenu) {
+    mobileMenuToggle.addEventListener("click", () => {
+        mobileMenuToggle.classList.toggle("active");
+        navMenu.classList.toggle("show");
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll(".nav-menu a").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenuToggle.classList.remove("active");
+            navMenu.classList.remove("show");
+        });
+    });
+}

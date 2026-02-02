@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online Unit Converter. Convert between different units of length, weight, temperature, and volume instantly.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .converter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: #f0f4f8;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #00A8E8;
+            color: white;
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .swap-btn {
+            background: #f0f4f8;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .swap-btn:hover {
+            transform: rotate(180deg);
+            background: #e1e7ee;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#calculators">Calculators</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Unit Converter</h1>
+
+        <div class="calculator-wrapper">
+            <div class="converter-tabs">
+                <button class="tab-btn active" onclick="setCategory('length')">Length</button>
+                <button class="tab-btn" onclick="setCategory('weight')">Weight</button>
+                <button class="tab-btn" onclick="setCategory('temperature')">Temperature</button>
+                <button class="tab-btn" onclick="setCategory('volume')">Volume</button>
+            </div>
+
+            <div class="converter-grid">
+                <div class="form-group">
+                    <label>From</label>
+                    <input type="number" id="fromValue" value="1" oninput="convert()">
+                    <select id="fromUnit" onchange="convert()"
+                        style="margin-top: 10px; width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>To</label>
+                    <input type="number" id="toValue" readonly>
+                    <select id="toUnit" onchange="convert()"
+                        style="margin-top: 10px; width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;"></select>
+                </div>
+            </div>
+
+            <div class="result-box active" id="result-box" style="margin-top: 30px;">
+                <h3 id="conversion-text" style="color: #00A8E8; font-size: 1.2rem;">1 Meter = 3.28084 Feet</h3>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        const units = {
+            length: {
+                meter: 1,
+                kilometer: 0.001,
+                centimeter: 100,
+                millimeter: 1000,
+                mile: 0.000621371,
+                yard: 1.09361,
+                foot: 3.28084,
+                inch: 39.3701
+            },
+            weight: {
+                kilogram: 1,
+                gram: 1000,
+                milligram: 1000000,
+                pound: 2.20462,
+                ounce: 35.274
+            },
+            temperature: {
+                celsius: 'C',
+                fahrenheit: 'F',
+                kelvin: 'K'
+            },
+            volume: {
+                liter: 1,
+                milliliter: 1000,
+                gallon: 0.264172,
+                quart: 1.05669,
+                pint: 2.11338,
+                cup: 4.22675
+            }
+        };
+
+        let currentCategory = 'length';
+
+        function setCategory(cat) {
+            currentCategory = cat;
+
+            // Update UI
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === cat) btn.classList.add('active');
+            });
+
+            // Populate Dropdowns
+            const fromSelect = document.getElementById('fromUnit');
+            const toSelect = document.getElementById('toUnit');
+            fromSelect.innerHTML = '';
+            toSelect.innerHTML = '';
+
+            Object.keys(units[cat]).forEach(unit => {
+                let opt1 = document.createElement('option');
+                opt1.value = unit;
+                opt1.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+                fromSelect.appendChild(opt1);
+
+                let opt2 = document.createElement('option');
+                opt2.value = unit;
+                opt2.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+                toSelect.appendChild(opt2);
+            });
+
+            // Set defaults
+            if (cat === 'length') {
+                fromSelect.value = 'meter';
+                toSelect.value = 'foot';
+            } else if (cat === 'weight') {
+                fromSelect.value = 'kilogram';
+                toSelect.value = 'pound';
+            } else if (cat === 'temperature') {
+                fromSelect.value = 'celsius';
+                toSelect.value = 'fahrenheit';
+            } else if (cat === 'volume') {
+                fromSelect.value = 'liter';
+                toSelect.value = 'gallon';
+            }
+
+            convert();
+        }
+
+        function convert() {
+            const val = parseFloat(document.getElementById('fromValue').value);
+            const from = document.getElementById('fromUnit').value;
+            const to = document.getElementById('toUnit').value;
+            const toInput = document.getElementById('toValue');
+            const resultText = document.getElementById('conversion-text');
+
+            if (isNaN(val)) {
+                toInput.value = '';
+                return;
+            }
+
+            let result;
+
+            if (currentCategory === 'temperature') {
+                // Temp logic
+                let celsius;
+                if (from === 'celsius') celsius = val;
+                else if (from === 'fahrenheit') celsius = (val - 32) * 5 / 9;
+                else if (from === 'kelvin') celsius = val - 273.15;
+
+                if (to === 'celsius') result = celsius;
+                else if (to === 'fahrenheit') result = (celsius * 9 / 5) + 32;
+                else if (to === 'kelvin') result = celsius + 273.15;
+            } else {
+                // Standard multiplier logic
+                const categoryUnits = units[currentCategory];
+                const inBase = val / categoryUnits[from];
+                result = inBase * categoryUnits[to];
+            }
+
+            const formattedResult = Number(result.toFixed(5));
+            toInput.value = formattedResult;
+            resultText.textContent = `${val} ${from} = ${formattedResult} ${to}`;
+        }
+
+        // Initialize
+        setCategory('length');
+    </script>
+</body>
+
+</html>
