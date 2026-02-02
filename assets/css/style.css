@@ -39,37 +39,53 @@ a {
     padding: 0 20px;
 }
 
+/* Button Upgrade */
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
+    padding: 14px 30px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    border-radius: var(--border-radius);
-    transition: background-color 0.3s ease;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: none;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+    text-align: center;
+    min-width: 150px;
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 168, 232, 0.2);
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 2rem;
-    color: var(--text-color);
+    margin-bottom: 50px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1a202c;
+    letter-spacing: -0.5px;
 }
 
 /* Header */
 header {
     background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     height: var(--header-height);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .nav-container {
@@ -80,9 +96,10 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.6rem;
+    font-weight: 800;
     color: var(--primary-color);
+    letter-spacing: -1px;
 }
 
 .nav-menu {
@@ -92,9 +109,10 @@ header {
 }
 
 .nav-menu a {
-    font-weight: 500;
-    color: var(--text-color);
+    font-weight: 600;
+    color: #4a5568;
     transition: color 0.2s;
+    font-size: 1.05rem;
 }
 
 .nav-menu a:hover {
@@ -231,54 +249,116 @@ footer {
     color: var(--text-light);
 }
 
-/* Single Tool Page Structure */
+/* Tool Page Structure - Professional Card */
 .tool-page-container {
-    padding: 60px 0;
-    max-width: 800px;
+    padding: 60px 20px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .calculator-wrapper {
     background: white;
     padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
     margin-bottom: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 600px) {
+    .calculator-wrapper {
+        padding: 25px;
+    }
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 1.05rem;
+    text-align: left;
+    /* Explicitly align labels */
 }
 
+/* Modern Input Fields */
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
+    padding: 16px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+    color: #2d3748;
+    appearance: none;
+    /* Remove default styling */
 }
 
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    background-color: white;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 168, 232, 0.15);
+}
+
+/* Result Box - Premium Look */
 .result-box {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #E0F7FA;
-    border-radius: var(--border-radius);
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 16px;
     display: none;
-    /* Hidden by default */
+    text-align: center;
+    border: 2px solid rgba(0, 168, 232, 0.2);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .result-box.active {
     display: block;
 }
 
+/* Result Typography */
+#result,
+#bmi-result,
+#grade-result,
+#age-result,
+.result-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1.4;
+}
+
+.result-box p {
+    color: #4a5568;
+    font-size: 1.1rem;
+}
+
 .seo-content {
-    color: var(--text-light);
+    color: #718096;
+    font-size: 0.95rem;
 }
 
 /* Mobile Responsive */
@@ -648,17 +728,105 @@ footer {
         transform: translateY(-9px) rotate(-45deg);
     }
 }
+
 /* Related Tools Section */
-.related-tools { margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee; }
-.related-tools h2 { font-size: 1.5rem; margin-bottom: 25px; color: var(--text-color); text-align: left; }
-.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.related-card { background: #f8fbff; padding: 20px; border-radius: var(--border-radius); border: 1px solid #e0e7ff; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 10px; }
-.related-card:hover { background: white; border-color: var(--primary-color); box-shadow: var(--shadow); transform: translateY(-3px); }
-.related-card h3 { font-size: 1.1rem; color: var(--text-color); margin: 0; }
-.related-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
-.related-card-link { font-size: 0.9rem; color: var(--primary-color); font-weight: 600; margin-top: 5px; }
+.related-tools {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+.related-tools h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.related-card {
+    background: #f8fbff;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid #e0e7ff;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.related-card:hover {
+    background: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+}
+
+.related-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.related-card p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.related-card-link {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 5px;
+}
 
 /* SEO Description Styles */
-.tool-instructions { margin-top: 30px; background: #fff; padding: 25px; border-radius: var(--border-radius); border-left: 5px solid var(--primary-color); box-shadow: var(--shadow); }
-.tool-instructions h2 { font-size: 1.3rem; margin-bottom: 15px; color: var(--text-color); text-align: left; }
-.tool-instructions p { font-size: 1rem; color: var(--text-light); line-height: 1.7; }
+/* SEO Description Styles - Premium Upgrade */
+.tool-instructions {
+    margin-top: 50px;
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-instructions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+}
+
+.tool-instructions h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #2d3748;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tool-instructions h2::before {
+    content: '💡';
+    font-size: 1.2rem;
+}
+
+.tool-instructions p {
+    font-size: 1.05rem;
+    color: #4a5568;
+    line-height: 1.8;
+}
