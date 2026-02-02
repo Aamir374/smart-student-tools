@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Converter - Smart Student Tools</title>
+    <meta name="description"
+        content="Free Online Case Converter. Easily convert text to UPPERCASE, lowercase, Title Case, and Sentence Case.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .converter-textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        .action-btns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stats-box {
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            background: #f8fbff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .copy-btn {
+            background-color: #28a745 !important;
+        }
+
+        .copy-btn:hover {
+            background-color: #218838 !important;
+        }
+
+        #copy-status {
+            font-size: 0.8rem;
+            margin-left: 10px;
+            display: none;
+            color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">SmartStudentTools</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#student-tools">Student Tools</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container tool-page-container">
+        <h1 class="section-title">Case Converter</h1>
+
+        <div class="calculator-wrapper" style="max-width: 800px;">
+            <textarea class="converter-textarea" id="textInput" placeholder="Type or paste your text here..."
+                oninput="updateStats()"></textarea>
+
+            <div class="stats-box">
+                <span>Characters: <b id="charCount">0</b></span>
+                <span>Words: <b id="wordCount">0</b></span>
+                <span>Lines: <b id="lineCount">0</b></span>
+            </div>
+
+            <div class="action-btns">
+                <button class="btn" onclick="toUpperCase()">UPPERCASE</button>
+                <button class="btn" onclick="toLowerCase()">lowercase</button>
+                <button class="btn" onclick="toTitleCase()">Title Case</button>
+                <button class="btn" onclick="toSentenceCase()">Sentence Case</button>
+                <button class="btn" onclick="toCapitalizedCase()">Capitalize Words</button>
+            </div>
+
+            <div style="display: flex; align-items: center; margin-top: 20px;">
+                <button class="btn copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+                <button class="btn" style="background-color: #dc3545; margin-left: 10px;"
+                    onclick="clearText()">Clear</button>
+                <span id="copy-status">Copied!</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+        </div>
+    </footer>
+
+    <script>
+        const input = document.getElementById('textInput');
+
+        function updateStats() {
+            const text = input.value;
+            document.getElementById('charCount').textContent = text.length;
+            document.getElementById('wordCount').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById('lineCount').textContent = text ? text.split(/\r\n|\r|\n/).length : 0;
+        }
+
+        function toUpperCase() {
+            input.value = input.value.toUpperCase();
+        }
+
+        function toLowerCase() {
+            input.value = input.value.toLowerCase();
+        }
+
+        function toTitleCase() {
+            input.value = input.value.toLowerCase().split(' ').map(function (word) {
+                return (word.charAt(0).toUpperCase() + word.slice(1));
+            }).join(' ');
+        }
+
+        function toSentenceCase() {
+            let text = input.value.toLowerCase();
+            input.value = text.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function (c) {
+                return c.toUpperCase();
+            });
+        }
+
+        function toCapitalizedCase() {
+            input.value = input.value.toLowerCase().replace(/\b\w/g, function (c) {
+                return c.toUpperCase();
+            });
+        }
+
+        function clearText() {
+            input.value = '';
+            updateStats();
+        }
+
+        function copyToClipboard() {
+            if (!input.value) return;
+
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value).then(() => {
+                const status = document.getElementById('copy-status');
+                status.style.display = 'inline';
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>
