@@ -40,43 +40,43 @@
 
             <div class="result-box" id="result-box">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <p style="font-size: 0.9rem; color: #666;">Final Price</p>
-                        <h3 id="final-price" style="font-size: 2rem; color: #28a745; margin-bottom: 5px;"></h3>
-                    </div>
-                    <div style="text-align: right;">
-                        <p style="font-size: 0.9rem; color: #666;">You Save</p>
-                        <h3 id="saved-amount" style="font-size: 2rem; color: #00A8E8; margin-bottom: 5px;"></h3>
-                    </div>
+                    <h3 id="savings-result" style="color: #00A8E8; font-size: 1.5rem; margin-bottom: 10px;"></h3>
+                    <p id="final-price" style="font-size: 1.2rem; font-weight: bold;"></p>
                 </div>
             </div>
+
+            <div class="tool-instructions">
+                <h2>How to Use the Discount Calculator</h2>
+                <p>Find out exactly how much you'll save during a sale. Enter the original price and the discount
+                    percentage, and our tool will show you the final price and your total savings. It's perfect for
+                    quick calculations while shopping online or in-store to ensure you're getting the best deal.</p>
+            </div>
         </div>
-    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
-        </div>
-    </footer>
+        <footer>
+            <div class="container">
+                <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+            </div>
+        </footer>
 
-    <script>
-        function calculateDiscount() {
-            const price = parseFloat(document.getElementById('price').value);
-            const discount = parseFloat(document.getElementById('discount').value);
+        <script>
+            function calculateDiscount() {
+                const price = parseFloat(document.getElementById('price').value);
+                const discount = parseFloat(document.getElementById('discount').value);
 
-            if (isNaN(price) || isNaN(discount)) {
-                alert('Please enter valid numbers');
-                return;
+                if (isNaN(price) || isNaN(discount)) {
+                    alert('Please enter valid numbers');
+                    return;
+                }
+
+                const saved = (price * discount) / 100;
+                const final = price - saved;
+
+                document.getElementById('final-price').textContent = final.toFixed(2);
+                document.getElementById('saved-amount').textContent = saved.toFixed(2);
+                document.getElementById('result-box').classList.add('active');
             }
-
-            const saved = (price * discount) / 100;
-            const final = price - saved;
-
-            document.getElementById('final-price').textContent = final.toFixed(2);
-            document.getElementById('saved-amount').textContent = saved.toFixed(2);
-            document.getElementById('result-box').classList.add('active');
-        }
-    </script>
+        </script>
 </body>
 
 </html>

@@ -43,9 +43,20 @@
                 style="margin-top: 30px; text-align: center; height: 260px; display: flex; align-items: center; justify-content: center;">
             </div>
 
-            <div style="text-align: center; margin-top: 20px;">
-                <p style="color: #666; font-size: 0.9rem;">Right click the image to save it.</p>
+            <div id="qr-result" style="display: none; margin-top: 20px; text-align: center;">
+                <div id="qrcode" style="display: inline-block;"></div>
+                <br><br>
+                <button class="btn" onclick="downloadQR()" style="background-color: #28a745; width: 100%;">Download QR
+                    Code</button>
             </div>
+        </div>
+
+        <div class="tool-instructions">
+            <h2>How to Use the QR Code Generator</h2>
+            <p>Create custom QR codes for your website, social media, or contact info instantly. Enter the URL or text
+                you want to encode, and our tool generates a high-quality QR code. You can download the image for free
+                and use it on business cards, posters, or school projects to share information efficiently in a
+                digital-first world.</p>
         </div>
     </div>
 

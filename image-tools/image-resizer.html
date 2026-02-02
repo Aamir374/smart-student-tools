@@ -72,78 +72,89 @@
 
                 <img id="preview" class="preview-img">
                 <br><br>
-                <button class="btn" onclick="resizeAndDownload()">Download Resized Image</button>
+                <div id="download-section" style="display: none; margin-top: 20px;">
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <a id="download-link" class="btn"
+                        style="background-color: #28a745; width: 100%; text-align: center;">Download Resized Image</a>
+                </div>
+            </div>
+
+            <div class="tool-instructions">
+                <h2>How to Use the Image Resizer</h2>
+                <p>Our online image resizer allows you to change the dimensions of your photos without losing much
+                    quality. Upload your image (JPG or PNG), enter your desired width or height, and our tool will
+                    handle the rest. It's specifically useful for resizing images for school projects, social media
+                    uploads, or website optimization, ensuring they meet specific size requirements.</p>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
-        </div>
-    </footer>
+        <footer>
+            <div class="container">
+                <div class="footer-bottom">&copy; 2026 Smart Student Tools</div>
+            </div>
+        </footer>
 
-    <script>
-        let originalImage = null;
-        let originalRatio = 0;
+        <script>
+            let originalImage = null;
+            let originalRatio = 0;
 
-        function loadImage(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+            function loadImage(event) {
+                const file = event.target.files[0];
+                if (!file) return;
 
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = new Image();
-                img.onload = function () {
-                    originalImage = img;
-                    originalRatio = img.width / img.height;
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        originalImage = img;
+                        originalRatio = img.width / img.height;
 
-                    document.getElementById('widthInput').value = img.width;
-                    document.getElementById('heightInput').value = img.height;
+                        document.getElementById('widthInput').value = img.width;
+                        document.getElementById('heightInput').value = img.height;
 
-                    const preview = document.getElementById('preview');
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    document.getElementById('controls').style.display = 'block';
+                        const preview = document.getElementById('preview');
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                        document.getElementById('controls').style.display = 'block';
+                    }
+                    img.src = e.target.result;
                 }
-                img.src = e.target.result;
+                reader.readAsDataURL(file);
             }
-            reader.readAsDataURL(file);
-        }
 
-        function updateDimensions(source) {
-            if (!document.getElementById('aspectRatio').checked) return;
+            function updateDimensions(source) {
+                if (!document.getElementById('aspectRatio').checked) return;
 
-            const wInput = document.getElementById('widthInput');
-            const hInput = document.getElementById('heightInput');
+                const wInput = document.getElementById('widthInput');
+                const hInput = document.getElementById('heightInput');
 
-            if (source === 'width') {
-                const w = parseInt(wInput.value);
-                if (!isNaN(w)) hInput.value = Math.round(w / originalRatio);
-            } else {
-                const h = parseInt(hInput.value);
-                if (!isNaN(h)) wInput.value = Math.round(h * originalRatio);
+                if (source === 'width') {
+                    const w = parseInt(wInput.value);
+                    if (!isNaN(w)) hInput.value = Math.round(w / originalRatio);
+                } else {
+                    const h = parseInt(hInput.value);
+                    if (!isNaN(h)) wInput.value = Math.round(h * originalRatio);
+                }
             }
-        }
 
-        function resizeAndDownload() {
-            if (!originalImage) return;
+            function resizeAndDownload() {
+                if (!originalImage) return;
 
-            const w = parseInt(document.getElementById('widthInput').value);
-            const h = parseInt(document.getElementById('heightInput').value);
+                const w = parseInt(document.getElementById('widthInput').value);
+                const h = parseInt(document.getElementById('heightInput').value);
 
-            const canvas = document.createElement('canvas');
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(originalImage, 0, 0, w, h);
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(originalImage, 0, 0, w, h);
 
-            const link = document.createElement('a');
-            link.download = 'resized-image.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
-    </script>
+                const link = document.createElement('a');
+                link.download = 'resized-image.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        </script>
 </body>
 
 </html>

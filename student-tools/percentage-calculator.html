@@ -43,35 +43,45 @@
                         <input type="number" id="ofNumber" placeholder="Total Value">
                     </div>
                 </div>
-                <button class="btn" onclick="calculatePercentOf()">Calculate</button>
-                <div class="result-box" id="result1">
-                    <p id="resText1" style="font-size: 1.2rem; font-weight: bold;"></p>
+                <button class="btn" onclick="calculatePercentage()">Calculate</button>
+
+                <div class="result-box" id="result-box">
+                    <h3 id="percent-result" style="color: #00A8E8; font-size: 1.5rem; margin-bottom: 10px;"></h3>
                 </div>
             </div>
 
-            <!-- Type 2: X is what % of Y? -->
-            <div class="calc-section">
-                <h3>Find Percentage</h3>
-                <div class="form-group">
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="number" id="isNumber" placeholder="Part Value">
-                        <span>is what % of</span>
-                        <input type="number" id="totalNumber" placeholder="Total Value">
-                    </div>
-                </div>
-                <button class="btn" onclick="calculateWhatPercent()">Calculate</button>
-                <div class="result-box" id="result2">
-                    <p id="resText2" style="font-size: 1.2rem; font-weight: bold;"></p>
-                </div>
+            <div class="tool-instructions">
+                <h2>How to Use the Percentage Calculator</h2>
+                <p>Our percentage calculator is a simple tool to find what percent one number is of another, or to
+                    calculate the value of a certain percentage. Simply enter your numbers and click calculate. It's
+                    extremely helpful for students calculating marks, shoppers finding discounts, or business owners
+                    determining profit margins instantly.</p>
             </div>
         </div>
 
-        <div class="seo-content">
-            <h2>How to use this Percentage Calculator</h2>
-            <p>Our free percentage calculator tools allow you to solve common math problems quickly. Whether you need to
-                find a discount, tax, or just a simple percentage of a grade, this tool is perfect for students and
-                daily use.</p>
+        <!-- Type 2: X is what % of Y? -->
+        <div class="calc-section">
+            <h3>Find Percentage</h3>
+            <div class="form-group">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="number" id="isNumber" placeholder="Part Value">
+                    <span>is what % of</span>
+                    <input type="number" id="totalNumber" placeholder="Total Value">
+                </div>
+            </div>
+            <button class="btn" onclick="calculateWhatPercent()">Calculate</button>
+            <div class="result-box" id="result2">
+                <p id="resText2" style="font-size: 1.2rem; font-weight: bold;"></p>
+            </div>
         </div>
+    </div>
+
+    <div class="seo-content">
+        <h2>How to use this Percentage Calculator</h2>
+        <p>Our free percentage calculator tools allow you to solve common math problems quickly. Whether you need to
+            find a discount, tax, or just a simple percentage of a grade, this tool is perfect for students and
+            daily use.</p>
+    </div>
     </div>
 
     <footer>

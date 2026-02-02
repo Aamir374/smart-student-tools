@@ -102,12 +102,24 @@
             </div>
         </div>
 
-        <div class="controls">
-            <button class="btn" onclick="clearText()" style="background-color: #dc3545;">Clear Text</button>
-            <button class="btn" onclick="copyText()">Copy Text</button>
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <button class="btn copy-btn" onclick="copyToClipboard()" style="background-color: #28a745;">Copy to
+                Clipboard</button>
+            <button class="btn" style="background-color: #dc3545; margin-left: 10px;"
+                onclick="clearText()">Clear</button>
+            <span id="copy-status"
+                style="margin-left: 10px; font-size: 0.9rem; color: #28a745; display: none;">Copied!</span>
         </div>
 
         <textarea id="textInput" placeholder="Type or paste your text here..." oninput="updateCounts()"></textarea>
+
+        <div class="tool-instructions">
+            <h2>How to Use the Word Counter</h2>
+            <p>Paste your text into the box to get an instant count of words, characters, and paragraphs. Our word
+                counter updates in real-time as you type, making it an essential tool for students writing essays with
+                word limits, or professional writers checking their copy length. It's fast, free, and privacy-focused as
+                all processing happens in your browser.</p>
+        </div>
 
         <div class="seo-content">
             <h2>How to use this Word Counter</h2>
