@@ -790,11 +790,11 @@ footer {
 /* SEO Description Styles - Premium Upgrade */
 .tool-instructions {
     margin-top: 50px;
-    background: white;
+    background: #fdfdfd;
     padding: 35px;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e7ff;
     position: relative;
     overflow: hidden;
 }

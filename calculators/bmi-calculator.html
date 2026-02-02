@@ -19,6 +19,7 @@
                     <li><a href="../index.html#student-tools">Student Tools</a></li>
                     <li><a href="../index.html#calculators">Calculators</a></li>
                     <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href=".tool-instructions">How to Use</a></li>
                     <li><a href="../contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -72,9 +73,9 @@
             <button class="btn" onclick="calculateBMI()">Calculate BMI</button>
 
             <div class="result-box" id="result-box">
-                <h3 id="bmi-result" style="color: #00A8E8; font-size: 1.5rem; margin-bottom: 10px;"></h3>
-                <p id="category-result" style="font-size: 1.2rem; font-weight: bold;"></p>
-                <p id="range-result" style="font-size: 0.9rem; color: #666; margin-top: 10px;"></p>
+                <h3 id="bmi-value-display" style="color: #00A8E8; font-size: 1.8rem; margin-bottom: 5px;"></h3>
+                <p id="bmi-category-display" style="font-size: 1.2rem; font-weight: bold;"></p>
+                <p id="range-result-display" style="font-size: 0.9rem; color: #666; margin-top: 10px;"></p>
             </div>
         </div>
 
@@ -153,10 +154,10 @@
 
             const bmi = weight / (height * height);
             const resultBox = document.getElementById('result-box');
-            const valueText = document.getElementById('bmi-value');
-            const catText = document.getElementById('bmi-category');
+            const valueText = document.getElementById('bmi-value-display');
+            const catText = document.getElementById('bmi-category-display');
 
-            valueText.textContent = bmi.toFixed(1);
+            valueText.textContent = `BMI: ${bmi.toFixed(1)}`;
 
             let category = '';
             let color = '';

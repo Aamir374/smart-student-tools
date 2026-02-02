@@ -43,6 +43,7 @@
                     <li><a href="../index.html#student-tools">Student Tools</a></li>
                     <li><a href="../index.html#calculators">Calculators</a></li>
                     <li><a href="../index.html#image-tools">Image Tools</a></li>
+                    <li><a href=".tool-instructions">How to Use</a></li>
                     <li><a href="../contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -101,87 +102,89 @@
             <!-- Bottom Ad Slot -->
         </div>
 
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-brand">
-                        <h3>SmartStudentTools</h3>
-                        <p>Making student life easier.</p>
-                    </div>
-                    <div class="footer-links">
-                        <a href="../about.html">About</a>
-                        <a href="../contact.html">Contact</a>
-                        <a href="../privacy.html">Privacy Policy</a>
-                        <a href="../disclaimer.html">Disclaimer</a>
-                    </div>
+    </div> <!-- Close .tool-page-container -->
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>SmartStudentTools</h3>
+                    <p>Making student life easier.</p>
                 </div>
-                <div class="footer-bottom">
-                    &copy; 2026 Smart Student Tools. All Rights Reserved.
+                <div class="footer-links">
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../disclaimer.html">Disclaimer</a>
                 </div>
             </div>
-        </footer>
+            <div class="footer-bottom">
+                &copy; 2026 Smart Student Tools. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
 
-        <script>
-            let originalImage = null;
-            let originalRatio = 0;
+    <script>
+        let originalImage = null;
+        let originalRatio = 0;
 
-            function loadImage(event) {
-                const file = event.target.files[0];
-                if (!file) return;
+        function loadImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
 
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = new Image();
-                    img.onload = function () {
-                        originalImage = img;
-                        originalRatio = img.width / img.height;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    originalImage = img;
+                    originalRatio = img.width / img.height;
 
-                        document.getElementById('widthInput').value = img.width;
-                        document.getElementById('heightInput').value = img.height;
+                    document.getElementById('widthInput').value = img.width;
+                    document.getElementById('heightInput').value = img.height;
 
-                        const preview = document.getElementById('preview');
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                        document.getElementById('controls').style.display = 'block';
-                    }
-                    img.src = e.target.result;
+                    const preview = document.getElementById('preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    document.getElementById('controls').style.display = 'block';
                 }
-                reader.readAsDataURL(file);
+                img.src = e.target.result;
             }
+            reader.readAsDataURL(file);
+        }
 
-            function updateDimensions(source) {
-                if (!document.getElementById('aspectRatio').checked) return;
+        function updateDimensions(source) {
+            if (!document.getElementById('aspectRatio').checked) return;
 
-                const wInput = document.getElementById('widthInput');
-                const hInput = document.getElementById('heightInput');
+            const wInput = document.getElementById('widthInput');
+            const hInput = document.getElementById('heightInput');
 
-                if (source === 'width') {
-                    const w = parseInt(wInput.value);
-                    if (!isNaN(w)) hInput.value = Math.round(w / originalRatio);
-                } else {
-                    const h = parseInt(hInput.value);
-                    if (!isNaN(h)) wInput.value = Math.round(h * originalRatio);
-                }
+            if (source === 'width') {
+                const w = parseInt(wInput.value);
+                if (!isNaN(w)) hInput.value = Math.round(w / originalRatio);
+            } else {
+                const h = parseInt(hInput.value);
+                if (!isNaN(h)) wInput.value = Math.round(h * originalRatio);
             }
+        }
 
-            function resizeAndDownload() {
-                if (!originalImage) return;
+        function resizeAndDownload() {
+            if (!originalImage) return;
 
-                const w = parseInt(document.getElementById('widthInput').value);
-                const h = parseInt(document.getElementById('heightInput').value);
+            const w = parseInt(document.getElementById('widthInput').value);
+            const h = parseInt(document.getElementById('heightInput').value);
 
-                const canvas = document.createElement('canvas');
-                canvas.width = w;
-                canvas.height = h;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(originalImage, 0, 0, w, h);
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(originalImage, 0, 0, w, h);
 
-                const link = document.createElement('a');
-                link.download = 'resized-image.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            }
-        </script>
+            const link = document.createElement('a');
+            link.download = 'resized-image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
 </body>
 
 </html>
