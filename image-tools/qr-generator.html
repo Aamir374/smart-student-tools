@@ -67,10 +67,9 @@
                 style="margin-top: 30px; text-align: center; height: 260px; display: flex; align-items: center; justify-content: center;">
             </div>
 
-            <div id="qr-result" style="display: none; margin-top: 20px; text-align: center;">
-                <div id="qrcode" style="display: inline-block;"></div>
-                <br><br>
-                <button class="btn" onclick="downloadQR()" style="background-color: #28a745; width: 100%;">Download QR
+            <div id="qr-controls" style="margin-top: 20px; text-align: center;">
+                <button class="btn" id="downloadBtn" onclick="downloadQR()"
+                    style="background-color: #28a745; width: 100%; display: none;">Download QR
                     Code</button>
             </div>
         </div>
@@ -117,17 +116,46 @@
             height: 200
         });
 
+        const downloadBtn = document.getElementById("downloadBtn");
+
         function generateQR() {
             const text = document.getElementById("qrText").value;
             if (!text) {
                 qrcode.clear();
+                downloadBtn.style.display = "none";
                 return;
             }
             qrcode.makeCode(text);
+            downloadBtn.style.display = "block";
+        }
+
+        function downloadQR() {
+            const qrContainer = document.getElementById("qrcode");
+            const img = qrContainer.querySelector("img");
+            const canvas = qrContainer.querySelector("canvas");
+
+            let dataUrl;
+            if (img && img.src) {
+                dataUrl = img.src;
+            } else if (canvas) {
+                dataUrl = canvas.toDataURL("image/png");
+            }
+
+            if (dataUrl) {
+                const link = document.createElement("a");
+                link.href = dataUrl;
+                link.download = "qrcode.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("QR code not generated yet.");
+            }
         }
 
         // Initial example
         qrcode.makeCode("https://smartstudenttools.com");
+        downloadBtn.style.display = "block";
     </script>
     <script src="../assets/js/main.js"></script>
 </body>
