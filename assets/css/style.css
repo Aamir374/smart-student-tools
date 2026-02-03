@@ -19,7 +19,9 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
+    position: relative;
 }
 
 body {
@@ -691,24 +693,23 @@ footer {
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
         width: 100%;
-        /* Full width for a more immersive look */
         height: 100vh;
         background: linear-gradient(135deg, #00A8E8 0%, #007EA7 100%);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 30px;
-        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         z-index: 1000;
         display: flex;
+        transform: translateX(100%);
         visibility: hidden;
-        opacity: 0;
     }
 
     .nav-menu.show {
-        right: 0;
+        transform: translateX(0);
         visibility: visible;
         opacity: 1;
     }
@@ -763,6 +764,11 @@ footer {
 }
 
 @media (max-width: 600px) {
+    .btn {
+        min-width: 0 !important;
+        width: 100%;
+    }
+
     .controls .btn {
         width: 100%;
         margin-left: 0 !important;
