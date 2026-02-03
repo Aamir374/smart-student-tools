@@ -751,6 +751,11 @@ footer {
     align-items: center;
 }
 
+.controls .btn {
+    margin: 5px 0;
+    /* Vertical margin for wrap cases */
+}
+
 @media (max-width: 600px) {
     .controls .btn {
         width: 100%;
