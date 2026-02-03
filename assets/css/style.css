@@ -206,8 +206,8 @@ header {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 .mini-tool-card {
@@ -256,7 +256,7 @@ footer {
 /* Tool Page Structure - Professional Card */
 .tool-page-container {
     padding: 60px 20px;
-    max-width: 850px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
