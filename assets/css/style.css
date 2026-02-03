@@ -741,6 +741,23 @@ footer {
     }
 }
 
+/* Common Control Groups (Buttons etc) */
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .controls .btn {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+}
+
 /* Responsive Row Utilities */
 .grade-row,
 .gpa-row {
