@@ -7,7 +7,7 @@
     <title>Word Counter - Smart Student Tools</title>
     <meta name="description"
         content="Free online Word Counter tool. Count words, characters, sentences, and paragraphs in real-time. Perfect for essays and assignments.">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=1.1">
     <style>
         .counter-grid {
             display: grid;
@@ -57,8 +57,15 @@
         .controls {
             display: flex;
             gap: 15px;
+            margin-top: 20px;
             margin-bottom: 25px;
             flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .controls .btn {
+            margin-right: 15px !important;
+            margin-bottom: 10px;
         }
 
         @media (max-width: 600px) {
@@ -121,8 +128,7 @@
         </div>
 
         <div class="controls">
-            <button class="btn copy-btn" onclick="copyToClipboard()"
-                style="background-color: #28a745; margin-right: 10px;">Copy to
+            <button class="btn copy-btn" onclick="copyToClipboard()" style="background-color: #28a745;">Copy to
                 Clipboard</button>
             <button class="btn" style="background-color: #dc3545;" onclick="clearText()">Clear</button>
             <span id="copy-status" style="font-size: 0.9rem; color: #28a745; display: none;">Copied!</span>
