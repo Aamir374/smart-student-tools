@@ -56,8 +56,16 @@
 
         .controls {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 600px) {
+            .controls .btn {
+                width: 100%;
+                margin-left: 0 !important;
+            }
         }
     </style>
 </head>
@@ -112,13 +120,11 @@
             </div>
         </div>
 
-        <div style="display: flex; align-items: center; margin-top: 20px;">
+        <div class="controls">
             <button class="btn copy-btn" onclick="copyToClipboard()" style="background-color: #28a745;">Copy to
                 Clipboard</button>
-            <button class="btn" style="background-color: #dc3545; margin-left: 10px;"
-                onclick="clearText()">Clear</button>
-            <span id="copy-status"
-                style="margin-left: 10px; font-size: 0.9rem; color: #28a745; display: none;">Copied!</span>
+            <button class="btn" style="background-color: #dc3545;" onclick="clearText()">Clear</button>
+            <span id="copy-status" style="font-size: 0.9rem; color: #28a745; display: none;">Copied!</span>
         </div>
 
         <textarea id="textInput" placeholder="Type or paste your text here..." oninput="updateCounts()"></textarea>

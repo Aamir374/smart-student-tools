@@ -9,27 +9,21 @@
         content="Free Online Grade Calculator. Calculate your weighted grade or simple average easily.">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        .grade-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-
-        .grade-row input {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
         .add-btn {
             background-color: #28a745;
             color: white;
-            padding: 5px 10px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
             margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
         }
     </style>
 </head>
@@ -70,14 +64,14 @@
 
             <div id="grade-rows">
                 <div class="grade-row">
-                    <input type="text" placeholder="Assignment Name (Optional)" style="flex: 2;">
-                    <input type="number" placeholder="Grade (%)" class="grade-input" style="flex: 1;">
-                    <input type="number" placeholder="Weight (%)" class="weight-input" style="flex: 1;">
+                    <input type="text" placeholder="Assignment Name" class="form-input">
+                    <input type="number" placeholder="Grade (%)" class="grade-input">
+                    <input type="number" placeholder="Weight (%)" class="weight-input">
                 </div>
                 <div class="grade-row">
-                    <input type="text" placeholder="Assignment Name (Optional)" style="flex: 2;">
-                    <input type="number" placeholder="Grade (%)" class="grade-input" style="flex: 1;">
-                    <input type="number" placeholder="Weight (%)" class="weight-input" style="flex: 1;">
+                    <input type="text" placeholder="Assignment Name" class="form-input">
+                    <input type="number" placeholder="Grade (%)" class="grade-input">
+                    <input type="number" placeholder="Weight (%)" class="weight-input">
                 </div>
             </div>
 

@@ -690,20 +690,17 @@ footer {
         position: fixed;
         top: 0;
         right: -100%;
-        /* Hidden by default */
-        width: 80%;
-        max-width: 300px;
+        width: 100%;
+        /* Full width for a more immersive look */
         height: 100vh;
-        background-color: white;
+        background: linear-gradient(135deg, #00A8E8 0%, #007EA7 100%);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
-        box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
-        transition: 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        gap: 30px;
+        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         z-index: 1000;
         display: flex;
-        /* Override previous display:none */
     }
 
     .nav-menu.show {
@@ -711,11 +708,26 @@ footer {
     }
 
     .nav-menu a {
-        font-size: 1.25rem;
-        font-weight: 600;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px 20px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+        color: white;
     }
 
     /* Animate Hamburger to X */
+    .mobile-menu-toggle.active span {
+        background-color: white;
+    }
+
     .mobile-menu-toggle.active span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
@@ -726,6 +738,43 @@ footer {
 
     .mobile-menu-toggle.active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+/* Responsive Row Utilities */
+.grade-row,
+.gpa-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+
+    .grade-row,
+    .gpa-row {
+        flex-direction: column;
+        align-items: stretch;
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .grade-row input,
+    .gpa-row input,
+    .gpa-row select {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    .timer-display {
+        font-size: 4rem !important;
+    }
+
+    .counter-grid {
+        grid-template-columns: 1fr 1fr !important;
     }
 }
 

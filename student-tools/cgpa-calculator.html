@@ -8,20 +8,7 @@
     <meta name="description" content="Free CGPA Calculator. Calculate your Semester GPA and Cumulative GPA easily.">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        .gpa-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-
-        .gpa-row select,
-        .gpa-row input {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            flex: 1;
-        }
+        /* Row styles are now global in style.css */
     </style>
 </head>
 
@@ -59,7 +46,7 @@
 
             <div id="course-rows">
                 <div class="gpa-row">
-                    <input type="text" placeholder="Course Name" style="flex: 2;">
+                    <input type="text" placeholder="Course Name">
                     <input type="number" placeholder="Credits" class="credit-input">
                     <select class="grade-select">
                         <option value="4.0">A</option>
@@ -75,7 +62,7 @@
                     </select>
                 </div>
                 <div class="gpa-row">
-                    <input type="text" placeholder="Course Name" style="flex: 2;">
+                    <input type="text" placeholder="Course Name">
                     <input type="number" placeholder="Credits" class="credit-input">
                     <select class="grade-select">
                         <option value="4.0">A</option>
@@ -91,7 +78,7 @@
                     </select>
                 </div>
                 <div class="gpa-row">
-                    <input type="text" placeholder="Course Name" style="flex: 2;">
+                    <input type="text" placeholder="Course Name">
                     <input type="number" placeholder="Credits" class="credit-input">
                     <select class="grade-select">
                         <option value="4.0">A</option>
