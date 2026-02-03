@@ -95,7 +95,9 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-brand">
-                        <h3>SmartStudentTools</h3>
+                        <a href="../index.html">
+                            <h3>SmartStudentTools</h3>
+                        </a>
                         <p>Making student life easier.</p>
                     </div>
                     <div class="footer-links">
@@ -124,8 +126,8 @@
                 const saved = (price * discount) / 100;
                 const final = price - saved;
 
-                document.getElementById('final-price').textContent = final.toFixed(2);
-                document.getElementById('saved-amount').textContent = saved.toFixed(2);
+                document.getElementById('final-price').textContent = `Final Price: $${final.toFixed(2)}`;
+                document.getElementById('savings-result').textContent = `You Save: $${saved.toFixed(2)}`;
                 document.getElementById('result-box').classList.add('active');
             }
         </script>

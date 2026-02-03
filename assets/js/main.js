@@ -68,11 +68,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (results.length === 0) {
             searchResults.innerHTML = '<div class="no-results">No tools found matching your search.</div>';
         } else {
+            // Determine if we are in a subfolder to adjust links
+            const path = window.location.pathname;
+            const isSubfolder = path.includes('/student-tools/') || path.includes('/calculators/') || path.includes('/image-tools/');
+            const prefix = isSubfolder ? '../' : '';
+
             results.forEach((tool) => {
                 const div = document.createElement('div');
                 div.className = 'search-result-item';
                 div.innerHTML = `
-                    <a href="${tool.url}" style="display: flex; align-items: center; gap: 15px; width: 100%;">
+                    <a href="${prefix}${tool.url}" style="display: flex; align-items: center; gap: 15px; width: 100%;">
                         <div class="search-result-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="8"></circle>

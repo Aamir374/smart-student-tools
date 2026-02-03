@@ -176,7 +176,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>SmartStudentTools</h3>
+                    <a href="../index.html">
+                        <h3>SmartStudentTools</h3>
+                    </a>
                     <p>Making student life easier.</p>
                 </div>
                 <div class="footer-links">
@@ -217,11 +219,16 @@
             updateCounts();
         }
 
-        function copyText() {
+        function copyToClipboard() {
             const textField = document.getElementById('textInput');
             textField.select();
             document.execCommand('copy');
-            alert('Text copied to clipboard!');
+
+            const status = document.getElementById('copy-status');
+            status.style.display = 'inline';
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 2000);
         }
     </script>
     <script src="../assets/js/main.js"></script>
