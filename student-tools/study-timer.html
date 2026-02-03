@@ -27,6 +27,12 @@
             font-variant-numeric: tabular-nums;
         }
 
+        @media (max-width: 600px) {
+            .timer-display {
+                font-size: 3.5rem !important;
+            }
+        }
+
         .timer-controls {
             display: flex;
             justify-content: center;
@@ -99,7 +105,7 @@
                 <li><a href="../index.html#student-tools">Student Tools</a></li>
                 <li><a href="../index.html#calculators">Calculators</a></li>
                 <li><a href="../index.html#image-tools">Image Tools</a></li>
-                <li><a href=".tool-instructions">How to Use</a></li>
+                <li><a href="#tool-instructions">How to Use</a></li>
                 <li><a href="../contact.html">Contact</a></li>
             </ul>
             </nav>
@@ -131,7 +137,7 @@
             </div>
         </div>
 
-        <div class="tool-instructions">
+        <div class="tool-instructions" id="tool-instructions">
             <h2>How to Use the Study Timer</h2>
             <p>Enhance your productivity with our adjustable study timer. Set your desired session duration (default is
                 25 minutes), start the clock, and focus on your tasks until the alarm sounds. Use the break features to
