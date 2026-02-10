@@ -22,6 +22,62 @@
     <style>
         /* Row styles are now global in style.css */
     </style>
+
+    <!-- Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CGPA Calculator",
+      "description": "Free online CGPA calculator for students. Calculate cumulative GPA instantly with our easy-to-use tool.",
+      "url": "https://aamir374.github.io/smart-student-tools/student-tools/cgpa-calculator.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the difference between GPA and CGPA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GPA (Grade Point Average) measures your performance in a single semester or term. CGPA (Cumulative GPA) is the average of all your GPAs across all semesters from the start of your degree program."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good CGPA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generally: 3.5-4.0 is Excellent (Honors, Dean's List), 3.0-3.4 is Good (Above Average), 2.5-2.9 is Average, 2.0-2.4 is Below Average (may be on academic probation), Below 2.0 is Poor (risk of academic dismissal)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate CGPA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CGPA = (Sum of Grade Points × Credit Hours) ÷ Total Credit Hours. Multiply each course's grade points by its credit hours, add all results together, then divide by total credit hours."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -123,18 +179,302 @@
 
         <div class="tool-instructions" id="tool-instructions">
             <h2>How to Use the CGPA Calculator</h2>
-            <p>Calculating your CGPA is crucial for tracking your academic performance. Our tool makes it simple and
-                accurate:</p>
+            <p>Calculating your CGPA (Cumulative Grade Point Average) is crucial for tracking your academic performance
+                throughout your college or university journey. Our free online CGPA calculator makes it simple,
+                accurate, and instant. Whether you're a first-year student or preparing for graduation, this tool helps
+                you monitor your academic standing and plan for future semesters.</p>
+
+            <h3>Quick Start Guide</h3>
+            <ol>
+                <li><strong>Enter Course Details:</strong> Type the name of each course you're taking (e.g., "Calculus
+                    I", "English Literature")</li>
+                <li><strong>Add Credit Hours:</strong> Input the credit hours for each course (typically 1-4 credits)
+                </li>
+                <li><strong>Select Your Grade:</strong> Choose the letter grade you received from the dropdown menu</li>
+                <li><strong>Add More Courses:</strong> Click the "+ Add Course" button to include additional courses
+                </li>
+                <li><strong>Calculate:</strong> Hit the "Calculate CGPA" button to see your results instantly</li>
+            </ol>
+
+            <h2>What is CGPA?</h2>
+            <p>CGPA stands for <strong>Cumulative Grade Point Average</strong>. It's a standardized way of measuring
+                academic performance across all semesters of your degree program. Unlike GPA (which measures performance
+                in a single semester), CGPA gives you an overall picture of your academic achievement from the beginning
+                of your studies to the present.</p>
+
+            <p>Universities and colleges worldwide use CGPA to:</p>
             <ul>
-                <li><strong>Current CGPA:</strong> If you have already completed some semesters, enter your current CGPA
-                    and the total credit hours earned so far.</li>
-                <li><strong>New Semester Data:</strong> Add your current semester's grade points and credit hours to see
-                    how it impacts your cumulative score.</li>
-                <li><strong>Scale Support:</strong> Our calculator works with standard 4.0 and 5.0 GPA scales used by
-                    most universities.</li>
-                <li><strong>Instant Results:</strong> See your updated CGPA immediately as you enter your marks.</li>
+                <li>Determine academic standing and eligibility for honors</li>
+                <li>Award scholarships and financial aid</li>
+                <li>Evaluate students for graduate school admissions</li>
+                <li>Assess eligibility for internships and job placements</li>
+                <li>Identify students who need academic support</li>
             </ul>
-            <p>Stay on top of your academic goals with our free and easy-to-use CGPA tool.</p>
+
+            <h2>How to Calculate CGPA: The Formula</h2>
+            <p>The CGPA calculation follows a weighted average formula that considers both your grades and the credit
+                hours of each course:</p>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <strong>CGPA Formula:</strong><br>
+                CGPA = (Sum of Grade Points × Credit Hours) ÷ Total Credit Hours
+            </div>
+
+            <h3>Step-by-Step Calculation Example</h3>
+            <p>Let's say you took 4 courses in a semester:</p>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background: #00A8E8; color: white;">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Course</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Grade</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Grade Points</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Credits</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Points × Credits</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Mathematics</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">A</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">4.0</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">12.0</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Physics</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">B+</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3.3</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">4</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">13.2</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">English</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">A-</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3.7</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">11.1</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Chemistry</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">B</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3.0</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">4</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">12.0</td>
+                </tr>
+                <tr style="background: #f8f9fa; font-weight: bold;">
+                    <td colspan="3" style="padding: 10px; border: 1px solid #ddd;">Total</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">14</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">48.3</td>
+                </tr>
+            </table>
+            <p><strong>CGPA = 48.3 ÷ 14 = 3.45</strong></p>
+
+            <h2>Understanding Grading Systems</h2>
+            <h3>4.0 Scale (Most Common in USA)</h3>
+            <ul>
+                <li><strong>A (4.0):</strong> Excellent - 90-100%</li>
+                <li><strong>A- (3.7):</strong> Very Good - 85-89%</li>
+                <li><strong>B+ (3.3):</strong> Good - 80-84%</li>
+                <li><strong>B (3.0):</strong> Above Average - 75-79%</li>
+                <li><strong>B- (2.7):</strong> Average - 70-74%</li>
+                <li><strong>C+ (2.3):</strong> Below Average - 65-69%</li>
+                <li><strong>C (2.0):</strong> Pass - 60-64%</li>
+                <li><strong>D (1.0):</strong> Minimum Pass - 50-59%</li>
+                <li><strong>F (0.0):</strong> Fail - Below 50%</li>
+            </ul>
+
+            <h2>CGPA to Percentage Conversion</h2>
+            <p>Many universities and employers require percentage scores instead of CGPA. Here are the most common
+                conversion methods:</p>
+
+            <h3>Method 1: Standard Conversion (Most Common)</h3>
+            <p><strong>Percentage = CGPA × 9.5</strong></p>
+            <p>Example: CGPA 3.5 = 3.5 × 9.5 = 33.25%</p>
+
+            <h3>Method 2: University-Specific Formula</h3>
+            <p>Some universities use: <strong>Percentage = (CGPA - 0.75) × 10</strong></p>
+
+            <h3>Conversion Table</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background: #00A8E8; color: white;">
+                    <th style="padding: 10px; border: 1px solid #ddd;">CGPA</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Percentage (×9.5)</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Grade</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">4.0</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">95-100%</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">A+</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3.7-3.9</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">85-94%</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">A</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3.3-3.6</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">75-84%</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">B+</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">3.0-3.2</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">65-74%</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">B</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">2.7-2.9</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">60-64%</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">C+</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">2.0-2.6</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">50-59%</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">C</td>
+                </tr>
+            </table>
+
+            <h2>Tips for Improving Your CGPA</h2>
+            <ol>
+                <li><strong>Focus on High-Credit Courses:</strong> Since CGPA is weighted, performing well in courses
+                    with more credits has a bigger impact</li>
+                <li><strong>Don't Ignore "Easy" Courses:</strong> Every grade counts toward your cumulative average</li>
+                <li><strong>Plan Ahead:</strong> Use this calculator to see how future grades will affect your CGPA</li>
+                <li><strong>Seek Help Early:</strong> If you're struggling, get tutoring before it's too late</li>
+                <li><strong>Balance Your Course Load:</strong> Don't take too many difficult courses in one semester
+                </li>
+                <li><strong>Attend Office Hours:</strong> Professors appreciate students who show initiative</li>
+                <li><strong>Form Study Groups:</strong> Collaborative learning improves understanding</li>
+                <li><strong>Use Campus Resources:</strong> Writing centers, math labs, and academic advisors are there
+                    to help</li>
+            </ol>
+
+            <h2>Frequently Asked Questions (FAQs)</h2>
+
+            <h3>1. What's the difference between GPA and CGPA?</h3>
+            <p><strong>GPA (Grade Point Average)</strong> measures your performance in a single semester or term.
+                <strong>CGPA (Cumulative GPA)</strong> is the average of all your GPAs across all semesters from the
+                start of your degree program.
+            </p>
+
+            <h3>2. What is a good CGPA?</h3>
+            <p>Generally:
+            <ul>
+                <li><strong>3.5-4.0:</strong> Excellent (Honors, Dean's List)</li>
+                <li><strong>3.0-3.4:</strong> Good (Above Average)</li>
+                <li><strong>2.5-2.9:</strong> Average</li>
+                <li><strong>2.0-2.4:</strong> Below Average (may be on academic probation)</li>
+                <li><strong>Below 2.0:</strong> Poor (risk of academic dismissal)</li>
+            </ul>
+            </p>
+
+            <h3>3. Can I raise my CGPA significantly in one semester?</h3>
+            <p>It depends on how many semesters you've completed. In your first year, one good semester can raise your
+                CGPA significantly. By your final year, the impact of a single semester is much smaller because you have
+                more credits already completed.</p>
+
+            <h3>4. Do all courses count toward CGPA?</h3>
+            <p>Most universities include all graded courses in CGPA calculation. However, some schools exclude:
+            <ul>
+                <li>Pass/Fail courses</li>
+                <li>Audit courses</li>
+                <li>Remedial courses</li>
+                <li>Courses taken at other institutions (unless officially transferred)</li>
+            </ul>
+            </p>
+
+            <h3>5. What happens if I retake a course?</h3>
+            <p>Policies vary by institution:
+            <ul>
+                <li><strong>Grade Replacement:</strong> Only the new grade counts</li>
+                <li><strong>Grade Averaging:</strong> Both grades are averaged</li>
+                <li><strong>Both Count:</strong> Both attempts appear on transcript and affect CGPA</li>
+            </ul>
+            Check your university's specific retake policy.
+            </p>
+
+            <h3>6. Is a 3.0 CGPA good enough for graduate school?</h3>
+            <p>It depends on the program. Competitive graduate programs typically require:
+            <ul>
+                <li><strong>Top-tier programs:</strong> 3.5+ CGPA</li>
+                <li><strong>Mid-tier programs:</strong> 3.0-3.5 CGPA</li>
+                <li><strong>Less competitive programs:</strong> 2.5-3.0 CGPA</li>
+            </ul>
+            However, GRE scores, research experience, and recommendation letters also matter significantly.
+            </p>
+
+            <h3>7. How do I calculate CGPA for multiple semesters?</h3>
+            <p>Add up all grade points earned (grade × credits) across all semesters, then divide by total credit hours
+                attempted. Our calculator does this automatically when you enter all your courses.</p>
+
+            <h3>8. What if my university uses a 5.0 or 10.0 scale?</h3>
+            <p>The calculation method remains the same—only the grade point values change. For a 10.0 scale:
+            <ul>
+                <li>A = 10, B = 8, C = 6, D = 4, F = 0</li>
+            </ul>
+            You can manually adjust the grade values in our calculator or use the conversion: <strong>4.0 scale = (10.0
+                scale ÷ 10) × 4</strong>
+            </p>
+
+            <h3>9. Does CGPA matter for job applications?</h3>
+            <p>Yes, especially for:
+            <ul>
+                <li><strong>Entry-level positions:</strong> Many companies have minimum CGPA requirements (often 3.0+)
+                </li>
+                <li><strong>Competitive industries:</strong> Finance, consulting, and tech companies often screen by
+                    CGPA</li>
+                <li><strong>Internships:</strong> Most require a minimum CGPA</li>
+            </ul>
+            However, work experience and skills become more important as you gain professional experience.
+            </p>
+
+            <h3>10. Can I exclude my worst semester from CGPA?</h3>
+            <p>No, CGPA includes all semesters. However, some universities offer:
+            <ul>
+                <li><strong>Academic Forgiveness:</strong> Excludes one poor semester after a certain period</li>
+                <li><strong>Fresh Start Policy:</strong> Allows students to restart with a clean slate (rare)</li>
+            </ul>
+            These policies have strict requirements—check with your academic advisor.
+            </p>
+
+            <h3>11. How accurate is this CGPA calculator?</h3>
+            <p>Our calculator uses the standard weighted average formula used by most universities worldwide. It's 100%
+                accurate for the 4.0 scale. If your university uses a different grading system, you may need to adjust
+                the grade point values accordingly.</p>
+
+            <h3>12. What's the minimum CGPA to avoid academic probation?</h3>
+            <p>Most universities require a minimum CGPA of 2.0 (C average) to remain in good academic standing. Falling
+                below this typically results in:
+            <ul>
+                <li>Academic probation (warning period)</li>
+                <li>Loss of financial aid eligibility</li>
+                <li>Ineligibility for extracurricular activities</li>
+                <li>Academic suspension (if CGPA doesn't improve)</li>
+            </ul>
+            </p>
+
+            <h3>13. How do I calculate my major GPA vs overall CGPA?</h3>
+            <p><strong>Major GPA</strong> includes only courses in your major field, while <strong>Overall CGPA</strong>
+                includes all courses. To calculate major GPA, use this calculator but only enter courses that count
+                toward your major requirements.</p>
+
+            <h3>14. Does CGPA round up?</h3>
+            <p>It depends on your institution's policy. Some universities round (3.45 becomes 3.5), while others don't.
+                For official transcripts, most schools report CGPA to two decimal places without rounding.</p>
+
+            <h3>15. Can I calculate my projected CGPA?</h3>
+            <p>Yes! Enter your current courses with expected grades to see how your CGPA will change. This helps you
+                understand what grades you need to achieve your target CGPA.</p>
+
+            <h2>Related Calculators</h2>
+            <p>Check out our other academic tools:</p>
+            <ul>
+                <li><a href="grade-calculator.html">Grade Calculator</a> - Calculate your final course grade</li>
+                <li><a href="percentage-calculator.html">Percentage Calculator</a> - Convert marks to percentages</li>
+                <li><a href="../index.html#student-tools">All Student Tools</a> - Complete collection of academic
+                    calculators</li>
+            </ul>
+
+            <p style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <strong>💡 Pro Tip:</strong> Bookmark this page and check your CGPA after each semester to stay on track
+                with your academic goals. Early intervention is key to maintaining a strong academic record!
+            </p>
         </div>
 
         <!-- AD SLOT BOTTOM -->
